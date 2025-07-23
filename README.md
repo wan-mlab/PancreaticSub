@@ -16,16 +16,38 @@
 1. Download MetaPaCS and LIMMAdata.csv from the github
 2. Open the MetaPaCS code in jupyter notebook
 3. Specify the current directory, put LIMMAdata.csv or your input data in this directory
-   ![Specify the Directory](directory.png)
+
+<pre> ```import os
+   os.chdir() #change to your directory
+   import pandas as pd
+   !pip install torch torchvision torchaudio ``` </pre>
+
+
 4. Put LIMMAdata.csv (test data) or your own input data (must be structured as below) in this directory
-   ![Specify the Input](input.png)
+
+<pre> ```le = LabelEncoder()
+   x = pd.read_csv('') #your file here
+   data = "" #give the data a name ``` </pre>
+
+
+
 5. Specify the target directory for the output in the evaluation area of the code
 6. Enter in the name of your input in block 4, run the code in the order of the block
 ## Optional
 1. Use the other blocks of part 4 to measure performance of all possible unique combinations of 2 or 4 base classifiers
 2. Change the configuration of the code to work for the combination blocks by removing the hashtags from the path below to open the alternate output path
-   
-   ![Output pathways](outputpath.png)
+
+<pre> ```#filepath = '//' #for combination testing, enter the directory path for saving the results
+    folderpath = "//" #enter the directory path for saving the results
+    #folderpath = "/" #for combination testing
+    foldername = f"{run}/"
+    filepath = f"{folderpath}{foldername}"
+    subdir = f"{testing}/{stacked}/{model_name}/"    
+    filename = f"{data}({randomstate}),metrics.csv"
+    filename2 = f"predictions.csv"
+    full_path = os.path.join(filepath, subdir, filename)  #evaluation
+    full_path2 = os.path.join(filepath, subdir, filename2) #predictions ``` </pre>
+
    
 ```
 
@@ -35,6 +57,8 @@
 
 The prediction results and evaluations will be stored and exported to a folder named stackeval (10 classifiers LOO) in your specified directory.
 Evaluations are saved for all base and meta-learning classifiers.
+
+''''''
 
 ![Example Outputs](OUTPUTgithub.png)
 
